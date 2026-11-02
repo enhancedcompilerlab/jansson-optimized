@@ -260,18 +260,23 @@ static int lex_get_save(lex_t *lex, json_error_t *error) {
    Returns the number of bytes bulk-appended (0 = no fast path taken; caller
    must fall through to per-char lex_get_save). */
 static size_t lex_scan_plain_run(lex_t *lex) {
+    const char *src;
+    size_t start;
+    size_t i;
+    size_t run;
+
     if (lex->stream.mem_data == NULL)
         return 0;
     if (lex->stream.buffer[lex->stream.buffer_pos] != '\0')
         return 0;
 
-    const size_t start = *lex->stream.mem_pos;
-    const char *src = lex->stream.mem_data;
-    size_t i = start;
+    start = *lex->stream.mem_pos;
+    src = lex->stream.mem_data;
+    i = start;
     while (src[i] != '\0' && src[i] != '"' && src[i] != '\\' &&
            (unsigned char)src[i] >= 0x20 && (unsigned char)src[i] < 0x80)
         i++;
-    const size_t run = i - start;
+    run = i - start;
 
     if (run > 0) {
         strbuffer_append_bytes(&lex->saved_text, src + start, run);

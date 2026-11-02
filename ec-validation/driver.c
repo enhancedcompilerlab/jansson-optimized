@@ -8,15 +8,25 @@
 #include <stdlib.h>
 
 int main(int argc, char **argv) {
-    if (argc < 2) return 2;
+    if (argc < 2)
+        return 2;
     FILE *f = fopen(argv[1], "rb");
-    if (!f) { fprintf(stderr, "cannot open %s\n", argv[1]); return 2; }
+    if (!f) {
+        fprintf(stderr, "cannot open %s\n", argv[1]);
+        return 2;
+    }
     fseek(f, 0, SEEK_END);
     long n = ftell(f);
     fseek(f, 0, SEEK_SET);
-    if (n < 0) { fclose(f); return 2; }
+    if (n < 0) {
+        fclose(f);
+        return 2;
+    }
     char *buf = malloc((size_t)n + 1);
-    if (!buf) { fclose(f); return 2; }
+    if (!buf) {
+        fclose(f);
+        return 2;
+    }
     size_t rd = fread(buf, 1, (size_t)n, f);
     buf[rd] = '\0';
     fclose(f);
@@ -25,12 +35,15 @@ int main(int argc, char **argv) {
     json_t *root = json_loads(buf, JSON_REJECT_DUPLICATES, &err);
     free(buf);
     if (!root) {
-        printf("ERR line=%d col=%d pos=%d text=%s\n",
-               err.line, err.column, err.position, err.text);
+        printf("ERR line=%d col=%d pos=%d text=%s\n", err.line, err.column, err.position,
+               err.text);
         return 1;
     }
     char *d = json_dumps(root, JSON_ENSURE_ASCII | JSON_SORT_KEYS);
-    if (!d) { json_decref(root); return 1; }
+    if (!d) {
+        json_decref(root);
+        return 1;
+    }
     printf("%s\n", d);
     free(d);
     json_decref(root);
