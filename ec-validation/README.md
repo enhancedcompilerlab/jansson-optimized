@@ -1,4 +1,4 @@
-# ec-validate — jansson 优化验证（差分测试 + Fuzz）
+# ec-validation — jansson 优化验证（差分测试 + Fuzz）
 
 对"优化版（本仓库 `src/load.c`）vs 未改动基线"做**行为等价性**验证。
 

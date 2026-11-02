@@ -1,4 +1,4 @@
-# EC-OPT-DOC — Enhanced Compiler 优化文档
+# ec-docs — Enhanced Compiler 优化文档
 
 本目录记录对 **jansson 2.15.1** 的 "AI 代码生成即 enhanced compiler" 源码级优化：改了什么、为什么是编译器式优化、如何验证、性能与负结果。后续对其它项目（如 Lua VM）做优化时，也在此目录各建子文档归档。
 
@@ -15,11 +15,11 @@
 
 ## 与上游的差异（非代码）
 
-- 移除了上游的 GitHub Actions 工作流 `.github/workflows/{fuzz,tests}.yml`（发布用 token 缺少 `workflow` scope，无法推送 workflow 文件）。本 fork 的验证不依赖上游 CI，自带 `ec-validate/` 差分+fuzz 门禁；原文件保留在上游与本地 git 历史中，可随时恢复。
+- 移除了上游的 GitHub Actions 工作流 `.github/workflows/{fuzz,tests}.yml`（发布用 token 缺少 `workflow` scope，无法推送 workflow 文件）。本 fork 的验证不依赖上游 CI，自带 `ec-validation/` 差分+fuzz 门禁；原文件保留在上游与本地 git 历史中，可随时恢复。
 
 ## 配套目录
 
 | 目录 | 内容 |
 |---|---|
-| [`../ec-validate/`](../ec-validate/) | 验证：差分测试 + Fuzz（harness、语料生成器、326 个 corpus、driver） |
+| [`../ec-validation/`](../ec-validation/) | 验证：差分测试 + Fuzz（harness、语料生成器、326 个 corpus、driver） |
 | [`../ec-benchmark/`](../ec-benchmark/) | 基准：进程内解析吞吐（bench 程序 + 各类负载 + 结果） |

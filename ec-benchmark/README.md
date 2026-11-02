@@ -33,4 +33,4 @@ gcc -O2 -I <OPT_SRC>/src ec-benchmark/bench_parse.c <OPT_SRC的lib>.a -o bench -
 | `bench_num.json` | 数字密集（平铺浮点数数组） | 1.77MB | ≈35 MB/s | ≈35 MB/s | ~0% |
 | `bench_kw.json` | 关键字密集（true/false/null 数组） | 2.13MB | ≈64 MB/s | ≈65 MB/s | +~1% |
 
-字符串负载收益最大，印证优化命中字符串扫描；数字/关键字 ~0 为负结果，分析见 [`../EC-OPT-DOC/NEGATIVE-RESULT.md`](../EC-OPT-DOC/NEGATIVE-RESULT.md)。
+字符串负载收益最大，印证优化命中字符串扫描；数字/关键字 ~0 为负结果，分析见 [`../ec-docs/NEGATIVE-RESULT.md`](../ec-docs/NEGATIVE-RESULT.md)。
