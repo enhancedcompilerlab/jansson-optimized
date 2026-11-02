@@ -13,6 +13,10 @@
 | [OPTIMIZATION.md](OPTIMIZATION.md) | 已落地优化：字符串 token 扫描的批量 plain-run（唯一改动 `src/load.c`） |
 | [NEGATIVE-RESULT.md](NEGATIVE-RESULT.md) | 探索未纳入：数字/关键字批量 run（行为等价但实测无收益） |
 
+## 与上游的差异（非代码）
+
+- 移除了上游的 GitHub Actions 工作流 `.github/workflows/{fuzz,tests}.yml`（发布用 token 缺少 `workflow` scope，无法推送 workflow 文件）。本 fork 的验证不依赖上游 CI，自带 `ec-validate/` 差分+fuzz 门禁；原文件保留在上游与本地 git 历史中，可随时恢复。
+
 ## 配套目录
 
 | 目录 | 内容 |
